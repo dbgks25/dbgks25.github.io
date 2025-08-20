@@ -79,7 +79,7 @@ function initLazyLoading() {
 
 // Smooth scrolling for anchor links
 function initSmoothScrolling() {
-  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+  const anchorLinks = document.querySelectorAll('a[href^="#"]:not(.tag)');
   
   anchorLinks.forEach(link => {
     link.addEventListener('click', (e) => {
