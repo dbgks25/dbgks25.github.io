@@ -24,7 +24,8 @@
   {% if include.post.tags and include.post.tags.size > 0 %}
     <ul class="tag-list">
       {% for tag in include.post.tags limit:3 %}
-        <li><a href="{{ '/tags/' | relative_url }}#tag-{{ tag | slugify }}" class="tag">{{ tag }}</a></li>
+        {%- assign tag_url = '/tags/#tag-' | append: (tag | slugify) -%}
+        <li><a href="{{ tag_url | relative_url }}" class="tag">{{ tag }}</a></li>
       {% endfor %}
     </ul>
   {% endif %}
