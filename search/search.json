@@ -5,8 +5,8 @@ permalink: /search/search.json
 
 [
 {% assign pages    = site.pages | where_exp: "p", "p.title" | where_exp: "p", "p.search != false" %}
-{% assign posts    = site.collections['posts'].docs | where_exp: "p", "p.title" | where_exp: "p", "p.search != false" %}
-{% assign projects = site.collections['projects'].docs | default: empty | where_exp: "p", "p.title" | where_exp: "p", "p.search != false" %}
+{% assign posts    = site.posts | where_exp: "p", "p.title" | where_exp: "p", "p.search != false" %}
+{% assign projects = site.projects | where_exp: "p", "p.title" | where_exp: "p", "p.search != false" %}
 {% assign items    = pages | concat: posts | concat: projects | sort: "title" %}
 
 {% for item in items %}
