@@ -17,43 +17,6 @@ Twitch Developer Documentation 스타일을 모티브로 한 개인 포트폴리
 - **♿ 접근성**: WCAG 2.1 AA 기준 준수
 - **⚡ 성능 최적화**: Lighthouse 90+ 점수 목표
 
-## 🚀 빠른 시작
-
-### 필수 요구사항
-
-- Ruby 3.0+
-- Bundler
-- Git
-
-### 로컬 개발 환경 설정
-
-1. **저장소 클론**
-   ```bash
-   git clone https://github.com/dbgks25/dbgks25.github.io.git
-   cd dbgks25.github.io
-   ```
-
-2. **의존성 설치**
-   ```bash
-   bundle install
-   ```
-
-3. **로컬 서버 실행**
-   ```bash
-   bundle exec jekyll serve
-   ```
-
-4. **브라우저에서 확인**
-   ```
-   http://localhost:4000
-   ```
-
-### 개발 모드 (실시간 리로드)
-
-```bash
-bundle exec jekyll serve --livereload --drafts
-```
-
 ## 📦 배포
 
 ### GitHub Pages 자동 배포
@@ -276,13 +239,4 @@ bundle exec jekyll serve --verbose --trace
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
 
-## 🙏 감사의 말
 
-- [Jekyll](https://jekyllrb.com/) - 정적 사이트 생성기
-- [GitHub Pages](https://pages.github.com/) - 무료 호스팅
-- [Twitch](https://dev.twitch.tv/) - 디자인 영감
-- [Lunr.js](https://lunrjs.com/) - 클라이언트 사이드 검색
-
----
-
-**Made with ❤️ by [dbgks25](https://github.com/dbgks25)**
