@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-# Jekyll core
-gem "jekyll", "~> 4.3.0"
+# Use the github-pages gem to ensure dependency versions match GitHub Pages
+gem "github-pages", group: :jekyll_plugins
 
 # Essential plugins
 gem "jekyll-feed", "~> 0.12"
