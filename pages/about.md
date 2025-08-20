@@ -1,7 +1,8 @@
 ---
 layout: doc
 title: "소개"
-description: ""
+description: "한유한의 개인 소개 페이지입니다."
+permalink: /about/
 ---
 
 ## 안녕하세요!
