@@ -12,7 +12,7 @@ permalink: /tags/
   <div class="tags-cloud">
     {% assign sorted_tags = site.tags | sort %}
     {% for tag in sorted_tags %}
-      <a href="/tags/#tag-{{ tag[0] | slugify }}" class="tag tag-large" data-count="{{ tag[1].size }}">
+      <a href="{{ '/tags/#tag-' | append: tag[0] | slugify | relative_url }}" class="tag tag-large" data-count="{{ tag[1].size }}">
         {{ tag[0] }} ({{ tag[1].size }})
       </a>
     {% endfor %}
