@@ -30,8 +30,7 @@ layout: default
         <span class="tags-label">태그:</span>
         <ul class="tag-list">
           {% for tag in page.tags %}
-            {%- assign tag_url = '/tags/#tag-' | append: (tag | slugify) -%}
-            <li><a href="{{ tag_url | relative_url }}" class="tag">{{ tag }}</a></li>
+            <li><a href="/tags/#tag-{{ tag | slugify }}" class="tag">{{ tag }}</a></li>
           {% endfor %}
         </ul>
       </div>

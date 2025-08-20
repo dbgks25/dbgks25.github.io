@@ -126,7 +126,7 @@
             <div class="card-footer">
               <ul class="tag-list">
                 ${item.tags.split(' ').slice(0, 3).map(tag => 
-                  `<li><a href="/tags/#tag-${tag.toLowerCase().replace(/\s+/g, '-')}" class="tag">${tag}</a></li>`
+                  `<li><a href="/tags/#tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}" class="tag">${tag}</a></li>`
                 ).join('')}
               </ul>
             </div>
