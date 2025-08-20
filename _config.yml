@@ -1,0 +1,114 @@
+# Site settings
+title: "dbgks25 · Projects & Blog"
+email: your-email@example.com
+description: >-
+  개인 포트폴리오 및 기술 블로그. 데이터 분석, 웹 개발, 연구 프로젝트를 다룹니다.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://dbgks25.github.io" # the base hostname & protocol for your site
+twitter_username: dbgks25
+github_username: dbgks25
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+
+# Plugins (GitHub Pages compatible only)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate-v2
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name/
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 10
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+  collection: 'posts'
+
+# Autopages
+autopages:
+  enabled: true
+  categories:
+    layouts: 
+      - 'autopage_category.html'
+    title: 'Posts in category :cat'
+    permalink: '/category/:cat'
+  tags:
+    layouts: 
+      - 'autopage_tags.html'
+    title: 'Posts tagged with :tag'
+    permalink: '/blog/tags/:tag'
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "dbgks25"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      author: "dbgks25"
+
+# Site navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Blog"
+    url: "/blog/"
+  - title: "Projects"
+    url: "/projects/"
+  - title: "About"
+    url: "/about/"
+
+# SEO and social
+author:
+  name: "dbgks25"
+  email: "your-email@example.com"
+  twitter: "dbgks25"
+
+social:
+  name: "dbgks25"
+  links:
+    - "https://twitter.com/dbgks25"
+    - "https://github.com/dbgks25"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - CHANGELOG.md

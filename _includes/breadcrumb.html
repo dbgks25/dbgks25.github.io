@@ -1,0 +1,33 @@
+<nav class="breadcrumb" aria-label="브레드크럼">
+  <div class="breadcrumb-item">
+    <a href="{{ '/' | relative_url }}">홈</a>
+  </div>
+  
+  {% if page.layout == 'post' %}
+    <div class="breadcrumb-item">
+      <a href="{{ '/blog/' | relative_url }}">블로그</a>
+    </div>
+    <div class="breadcrumb-item">
+      <span>{{ page.title }}</span>
+    </div>
+  {% elsif page.layout == 'project' %}
+    <div class="breadcrumb-item">
+      <a href="{{ '/projects/' | relative_url }}">프로젝트</a>
+    </div>
+    <div class="breadcrumb-item">
+      <span>{{ page.title }}</span>
+    </div>
+  {% elsif page.url contains '/blog/' %}
+    <div class="breadcrumb-item">
+      <span>블로그</span>
+    </div>
+  {% elsif page.url contains '/projects/' %}
+    <div class="breadcrumb-item">
+      <span>프로젝트</span>
+    </div>
+  {% elsif page.title and page.title != site.title %}
+    <div class="breadcrumb-item">
+      <span>{{ page.title }}</span>
+    </div>
+  {% endif %}
+</nav>

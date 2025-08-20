@@ -1,0 +1,76 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+    <p class="site-description">{{ site.description }}</p>
+  </div>
+  
+  <nav class="sidebar-nav" role="navigation" aria-label="메인 네비게이션">
+    <div class="nav-section">
+      <h2 class="nav-title">메인</h2>
+      <ul class="nav-list">
+        {% for nav_item in site.navigation %}
+          <li class="nav-item">
+            <a href="{{ nav_item.url | relative_url }}" class="nav-link {% if page.url == nav_item.url %}active{% endif %}">
+              {{ nav_item.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="nav-section">
+      <h2 class="nav-title">최근 포스트</h2>
+      <ul class="nav-list">
+        {% for post in site.posts limit:5 %}
+          <li class="nav-item">
+            <a href="{{ post.url | relative_url }}" class="nav-link {% if page.url == post.url %}active{% endif %}">
+              {{ post.title | truncate: 30 }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+    {% assign featured_projects = site.projects | where: "featured", true %}
+    {% if featured_projects.size > 0 %}
+      <div class="nav-section">
+        <h2 class="nav-title">주요 프로젝트</h2>
+        <ul class="nav-list">
+          {% for project in featured_projects limit:3 %}
+            <li class="nav-item">
+              <a href="{{ project.url | relative_url }}" class="nav-link {% if page.url == project.url %}active{% endif %}">
+                {{ project.title | truncate: 30 }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    
+    <div class="nav-section">
+      <h2 class="nav-title">태그</h2>
+      <ul class="nav-list">
+        {% assign sorted_tags = site.tags | sort %}
+        {% for tag in sorted_tags limit:8 %}
+          <li class="nav-item">
+            <a href="{{ '/blog/tags/' | append: tag[0] | relative_url }}" class="nav-link">
+              {{ tag[0] }} ({{ tag[1].size }})
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <button class="theme-toggle" id="theme-toggle" aria-label="테마 변경">
+      <svg class="theme-icon theme-icon-light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z"/>
+      </svg>
+      <svg class="theme-icon theme-icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: none;">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+      </svg>
+      다크 모드
+    </button>
+  </div>
+</aside>

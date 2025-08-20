@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div class="list-header">
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}
+    <p class="list-description">{{ page.description }}</p>
+  {% endif %}
+  
+  {% if page.show_search != false %}
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="검색..." id="search-input">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+    </div>
+  {% endif %}
+</div>
+
+<div class="list-content" id="list-content">
+  {% if page.collection == 'posts' %}
+    {% assign items = site.posts %}
+  {% elsif page.collection == 'projects' %}
+    {% assign items = site.projects %}
+  {% else %}
+    {% assign items = site.posts %}
+  {% endif %}
+  
+  {% if items.size > 0 %}
+    <div class="card-grid">
+      {% for item in items %}
+        <div class="card" data-searchable="{{ item.title | downcase }} {{ item.content | strip_html | downcase }}">
+          {% if page.collection == 'projects' %}
+            {% include project-card.html project=item %}
+          {% else %}
+            {% include post-card.html post=item %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>아직 {{ page.collection == 'projects' ? '프로젝트가' : '포스트가' }} 없습니다.</p>
+    </div>
+  {% endif %}
+</div>
+
+{% if paginator and paginator.total_pages > 1 %}
+  <nav class="pagination" aria-label="페이지네이션">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="page-link" aria-label="이전 페이지">‹</a>
+    {% else %}
+      <span class="page-link disabled" aria-label="이전 페이지">‹</span>
+    {% endif %}
+    
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <span class="page-link active" aria-current="page">{{ page }}</span>
+      {% elsif page == 1 %}
+        <a href="{{ '/' | relative_url }}" class="page-link">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | replace: ':num', page | relative_url }}" class="page-link">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+    
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" class="page-link" aria-label="다음 페이지">›</a>
+    {% else %}
+      <span class="page-link disabled" aria-label="다음 페이지">›</span>
+    {% endif %}
+  </nav>
+{% endif %}

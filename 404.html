@@ -1,0 +1,130 @@
+---
+layout: default
+title: "페이지를 찾을 수 없습니다"
+description: "요청하신 페이지를 찾을 수 없습니다."
+permalink: /404.html
+breadcrumb: false
+---
+
+<div class="error-page">
+  <div class="error-content">
+    <h1 class="error-title">404</h1>
+    <h2>페이지를 찾을 수 없습니다</h2>
+    <p class="error-description">
+      죄송합니다. 요청하신 페이지가 존재하지 않거나 이동되었을 수 있습니다.
+    </p>
+    
+    <div class="error-actions">
+      <a href="{{ '/' | relative_url }}" class="btn btn-primary">홈으로 돌아가기</a>
+      <a href="{{ '/blog/' | relative_url }}" class="btn">블로그 보기</a>
+      <a href="{{ '/projects/' | relative_url }}" class="btn">프로젝트 보기</a>
+    </div>
+    
+    <div class="search-suggestion">
+      <h3>찾고 계신 내용이 있나요?</h3>
+      <div class="search-box">
+        <input type="text" class="search-input" placeholder="검색어를 입력하세요..." id="search-input-404">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="helpful-links">
+      <h3>도움이 될 만한 링크</h3>
+      <ul>
+        {% for post in site.posts limit:3 %}
+          <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+        {% endfor %}
+        {% for project in site.projects limit:2 %}
+          <li><a href="{{ project.url | relative_url }}">{{ project.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/search.js' | relative_url }}"></script>
+
+<style>
+.error-page {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.error-title {
+  font-size: 6rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.error-content h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: var(--color-text-primary);
+}
+
+.error-description {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.search-suggestion,
+.helpful-links {
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.search-suggestion h3,
+.helpful-links h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.helpful-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.helpful-links li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.helpful-links li:last-child {
+  border-bottom: none;
+}
+
+.helpful-links a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.helpful-links a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .error-title {
+    font-size: 4rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>

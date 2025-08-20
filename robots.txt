@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: {{ site.url }}/sitemap.xml
+
+# Disallow admin and private directories
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /_site/
+Disallow: /node_modules/
+
+# Allow search engines to crawl important content
+Allow: /blog/
+Allow: /projects/
+Allow: /about/
+Allow: /assets/
+
+# Crawl delay (optional)
+Crawl-delay: 1

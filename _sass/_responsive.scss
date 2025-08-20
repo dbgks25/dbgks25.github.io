@@ -1,0 +1,69 @@
+// Responsive design utilities
+@media (max-width: $breakpoint-sm) {
+  .content-wrapper {
+    padding: $spacing-lg $spacing-sm;
+  }
+  
+  .card {
+    padding: $spacing-md;
+  }
+  
+  h1 { font-size: $font-size-2xl; }
+  h2 { font-size: $font-size-xl; }
+  h3 { font-size: $font-size-lg; }
+  
+  .badge-list,
+  .tag-list {
+    gap: $spacing-xs;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .pagination {
+    .page-link {
+      width: 36px;
+      height: 36px;
+      font-size: $font-size-sm;
+    }
+  }
+  
+  .search-box {
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Print styles
+@media print {
+  .sidebar,
+  .site-header,
+  .pagination,
+  .search-box,
+  .theme-toggle,
+  .copy-button {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+  }
+  
+  .content-wrapper {
+    max-width: none;
+    padding: 0;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  .highlight {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}

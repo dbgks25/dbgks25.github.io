@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<article class="doc-content">
+  <header class="doc-header">
+    <h1 class="doc-title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="doc-description">{{ page.description }}</p>
+    {% endif %}
+    {% if page.date %}
+      <div class="doc-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%Y년 %m월 %d일" }}
+        </time>
+        {% if page.author %}
+          <span class="doc-author">by {{ page.author }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="doc-body">
+    {{ content }}
+  </div>
+
+  {% if page.tags and page.tags.size > 0 %}
+    <footer class="doc-footer">
+      <div class="doc-tags">
+        <span class="tags-label">태그:</span>
+        <ul class="tag-list">
+          {% for tag in page.tags %}
+            <li><a href="{{ '/blog/tags/' | append: tag | relative_url }}" class="tag">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </footer>
+  {% endif %}
+</article>

@@ -1,0 +1,16 @@
+---
+layout: doc
+---
+
+<div class="post-navigation">
+  {% if page.previous %}
+    <a href="{{ page.previous.url | relative_url }}" class="nav-link nav-prev">
+      ← {{ page.previous.title }}
+    </a>
+  {% endif %}
+  {% if page.next %}
+    <a href="{{ page.next.url | relative_url }}" class="nav-link nav-next">
+      {{ page.next.title }} →
+    </a>
+  {% endif %}
+</div>

@@ -1,0 +1,56 @@
+{% if include.project.thumb %}
+  <div class="card-thumb">
+    <img src="{{ include.project.thumb | relative_url }}" alt="{{ include.project.title }}" loading="lazy">
+  </div>
+{% endif %}
+
+<div class="card-header">
+  <h3 class="card-title">
+    <a href="{{ include.project.url | relative_url }}">{{ include.project.title }}</a>
+  </h3>
+  <div class="card-meta">
+    {% if include.project.date %}
+      <time datetime="{{ include.project.date | date_to_xmlschema }}">
+        {{ include.project.date | date: "%Y년 %m월" }}
+      </time>
+    {% endif %}
+    {% if include.project.status %}
+      <span class="status status-{{ include.project.status }}">
+        {% case include.project.status %}
+          {% when 'released' %}출시됨
+          {% when 'wip' %}진행중
+          {% when 'archived' %}보관됨
+          {% else %}{{ include.project.status }}
+        {% endcase %}
+      </span>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card-content">
+  {% if include.project.summary %}
+    <p>{{ include.project.summary }}</p>
+  {% else %}
+    <p>{{ include.project.excerpt | strip_html | truncate: 150 }}</p>
+  {% endif %}
+</div>
+
+<div class="card-footer">
+  {% if include.project.stack and include.project.stack.size > 0 %}
+    <ul class="badge-list">
+      {% for tech in include.project.stack limit:4 %}
+        <li class="badge badge-{{ tech | downcase | replace: '.', '' | replace: ' ', '' }}">{{ tech }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  
+  <div class="card-actions">
+    {% if include.project.repo %}
+      <a href="{{ include.project.repo }}" class="btn btn-sm" target="_blank" rel="noopener">GitHub</a>
+    {% endif %}
+    {% if include.project.demo %}
+      <a href="{{ include.project.demo }}" class="btn btn-sm" target="_blank" rel="noopener">데모</a>
+    {% endif %}
+    <a href="{{ include.project.url | relative_url }}" class="btn btn-sm btn-primary">자세히</a>
+  </div>
+</div>

@@ -1,0 +1,217 @@
+---
+layout: default
+title: "태그"
+description: "블로그 포스트를 태그별로 분류해서 볼 수 있습니다."
+---
+
+<div class="tags-page">
+  <h1>태그별 포스트</h1>
+  <p class="tags-description">관심 있는 태그를 클릭하여 관련 포스트를 확인해보세요.</p>
+  
+  <div class="tags-cloud">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      <a href="#tag-{{ tag[0] | slugify }}" class="tag tag-large" data-count="{{ tag[1].size }}">
+        {{ tag[0] }} ({{ tag[1].size }})
+      </a>
+    {% endfor %}
+  </div>
+  
+  <div class="tags-content">
+    {% for tag in sorted_tags %}
+      <section class="tag-section" id="tag-{{ tag[0] | slugify }}">
+        <h2 class="tag-title">
+          <span class="tag-name">{{ tag[0] }}</span>
+          <span class="tag-count">{{ tag[1].size }}개 포스트</span>
+        </h2>
+        
+        <div class="posts-grid">
+          {% for post in tag[1] %}
+            <article class="post-card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <time class="card-date" datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%Y년 %m월 %d일" }}
+                </time>
+              </div>
+              
+              <div class="card-content">
+                <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+              </div>
+              
+              {% if post.tags.size > 1 %}
+                <div class="card-footer">
+                  <ul class="tag-list">
+                    {% for post_tag in post.tags %}
+                      {% unless post_tag == tag[0] %}
+                        <li><a href="#tag-{{ post_tag | slugify }}" class="tag">{{ post_tag }}</a></li>
+                      {% endunless %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.tags-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.tags-description {
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: var(--color-surface);
+  border-radius: 1rem;
+}
+
+.tag-large {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+}
+
+.tag-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-primary-alpha);
+}
+
+.tag-section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 2rem;
+}
+
+.tag-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.tag-name {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.tag-count {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.card-title a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.card-title a:hover {
+  color: var(--color-primary);
+}
+
+.card-date {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.card-content p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tag-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .tags-cloud {
+    padding: 1rem;
+  }
+}
+</style>
+
+<script>
+// Smooth scrolling for tag links
+document.addEventListener('DOMContentLoaded', function() {
+  const tagLinks = document.querySelectorAll('.tags-cloud .tag');
+  
+  tagLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Update URL
+        history.pushState(null, null, `#${targetId}`);
+      }
+    });
+  });
+});
+</script>
