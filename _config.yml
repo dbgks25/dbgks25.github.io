@@ -1,6 +1,6 @@
 # Site settings
-title: "dbgks25 · Projects & Blog"
-email: your-email@example.com
+title: "HYH · Projects & Blog"
+email: dbgks25@uos.ac.kr
 description: >-
   개인 포트폴리오 및 기술 블로그. 데이터 분석, 웹 개발, 연구 프로젝트를 다룹니다.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -92,12 +92,11 @@ navigation:
 author:
   name: "dbgks25"
   email: "your-email@example.com"
-  twitter: "dbgks25"
+  twitter: ""
 
 social:
   name: "dbgks25"
   links:
-    - "https://twitter.com/dbgks25"
     - "https://github.com/dbgks25"
 
 # Exclude from processing
