@@ -53,7 +53,7 @@
         {% assign sorted_tags = site.tags | sort %}
         {% for tag in sorted_tags limit:8 %}
           <li class="nav-item">
-            <a href="{{ '/tags/#tag-' | append: tag[0] | slugify | relative_url }}" class="nav-link">
+            <a href="/tags/#tag-{{ tag[0] | slugify }}" class="nav-link">
               {{ tag[0] }} ({{ tag[1].size }})
             </a>
           </li>
