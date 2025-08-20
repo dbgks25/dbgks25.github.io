@@ -12,7 +12,7 @@ permalink: /tags/
   <div class="tags-cloud">
     {% assign sorted_tags = site.tags | sort %}
     {% for tag in sorted_tags %}
-      <a href="{{ '/tags/#tag-' | append: tag[0] | slugify | relative_url }}" class="tag tag-large" data-count="{{ tag[1].size }}">
+      <a href="#tag-{{ tag[0] | slugify }}" class="tag tag-large" data-count="{{ tag[1].size }}">
         {{ tag[0] }} ({{ tag[1].size }})
       </a>
     {% endfor %}
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
   tagLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
+      const targetId = this.hash.substring(1);
       const targetElement = document.getElementById(targetId);
       
       if (targetElement) {
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Update URL
-        history.pushState(null, null, `#${targetId}`);
+        history.pushState(null, null, this.hash);
       }
     });
   });
