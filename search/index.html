@@ -37,7 +37,7 @@ breadcrumb: false
   <div class="search-suggestions">
     <h3>인기 태그</h3>
     <div class="tag-suggestions">
-      {% assign popular_tags = site.tags | sort: 'size' | reverse %}
+      {% assign popular_tags = site.tags | sort %}
       {% for tag in popular_tags limit:8 %}
         <button class="tag suggestion-tag" data-query="{{ tag[0] }}">
           {{ tag[0] }} ({{ tag[1].size }})
