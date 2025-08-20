@@ -3,6 +3,7 @@ layout: doc
 ---
 
 <div class="post-navigation">
+  {% include breadcrumb.html %}
   {% if page.previous %}
     <a href="{{ page.previous.url | relative_url }}" class="nav-link nav-prev">
       ← {{ page.previous.title }}
@@ -14,3 +15,5 @@ layout: doc
     </a>
   {% endif %}
 </div>
+
+{% include comments.html %}

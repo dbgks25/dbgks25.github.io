@@ -1,0 +1,50 @@
+{% if page.comments != false %}
+  <section class="comments-section">
+    <h3>댓글</h3>
+    
+    <!-- GitHub-based comments using utterances -->
+    <script src="https://utteranc.es/client.js"
+            repo="dbgks25/dbgks25.github.io"
+            issue-term="pathname"
+            label="💬 comment"
+            theme="preferred-color-scheme"
+            crossorigin="anonymous"
+            async>
+    </script>
+    
+    <noscript>
+      <p>댓글을 보려면 JavaScript를 활성화해주세요.</p>
+    </noscript>
+  </section>
+{% endif %}
+
+<style>
+.comments-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-border);
+}
+
+.comments-section h3 {
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+/* utterances 테마 커스터마이징 */
+.utterances {
+  max-width: 100%;
+}
+
+.utterances-frame {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .comments-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+}
+</style>
