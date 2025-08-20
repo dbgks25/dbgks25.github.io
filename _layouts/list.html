@@ -41,7 +41,7 @@ layout: default
     </div>
   {% else %}
     <div class="empty-state">
-      <p>아직 {{ page.collection == 'projects' ? '프로젝트가' : '포스트가' }} 없습니다.</p>
+      <p>아직 {% if page.collection == 'projects' %}프로젝트가{% else %}포스트가{% endif %} 없습니다.</p>
     </div>
   {% endif %}
 </div>
