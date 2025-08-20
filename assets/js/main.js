@@ -11,6 +11,12 @@ function initCodeBlocks() {
   const codeBlocks = document.querySelectorAll('.highlight, pre');
   
   codeBlocks.forEach(block => {
+    // If the block is a 'pre' tag and its parent is a 'highlight' div, skip it
+    // because the 'highlight' div will be handled separately.
+    if (block.tagName === 'PRE' && block.parentElement.classList.contains('highlight')) {
+      return;
+    }
+
     // Wrap in container if not already
     if (!block.parentElement.classList.contains('code-block')) {
       const wrapper = document.createElement('div');
