@@ -7,7 +7,6 @@ role: "데이터 분석가 & 개발자"
 stack: ["Python", "Matplotlib", "Pandas", "NumPy", "Seaborn"]
 status: "released"
 featured: true
-thumb: /assets/img/projects/carbon-viz-thumb.png
 repo: "https://github.com/dbgks25/carbon-analysis"
 demo: "https://dbgks25.github.io/carbon-viz-demo"
 releases:
