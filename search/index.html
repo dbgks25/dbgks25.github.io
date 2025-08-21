@@ -13,9 +13,11 @@ breadcrumb: false
   
   <div class="search-box-large">
     <input type="text" class="search-input" placeholder="검색어를 입력하세요..." id="search-input-main" autofocus>
-    <svg class="search-icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
-      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-    </svg>
+    <button type="button" class="search-button" id="search-button">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+    </button>
   </div>
   
   <div class="search-filters">
@@ -89,13 +91,38 @@ breadcrumb: false
   box-shadow: 0 0 0 4px var(--color-primary-alpha);
 }
 
-.search-box-large .search-icon {
+.search-button {
   position: absolute;
-  right: 1.5rem;
+  right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: var(--color-primary-alpha);
+}
+
+.search-button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.search-button .search-icon {
   color: var(--color-text-muted);
-  pointer-events: none;
+  transition: color 0.3s ease;
+}
+
+.search-button:hover .search-icon {
+  color: var(--color-primary);
 }
 
 .search-filters {
@@ -239,8 +266,33 @@ breadcrumb: false
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input-main');
+  const searchButton = document.getElementById('search-button');
   const filterButtons = document.querySelectorAll('.filter-btn');
   const suggestionTags = document.querySelectorAll('.suggestion-tag');
+  
+  // Handle search button click
+  if (searchButton) {
+    searchButton.addEventListener('click', function() {
+      triggerSearch();
+    });
+  }
+  
+  // Handle Enter key press
+  if (searchInput) {
+    searchInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        triggerSearch();
+      }
+    });
+  }
+  
+  function triggerSearch() {
+    if (searchInput && searchInput.value.trim().length >= 2) {
+      const event = new Event('input');
+      searchInput.dispatchEvent(event);
+    }
+  }
   
   // Handle filter buttons
   filterButtons.forEach(btn => {
