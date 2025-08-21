@@ -16,8 +16,8 @@ permalink: /search/search.json
     "url": {{ item.url | relative_url | jsonify }},
     "date": {{ item.date | date_to_string | jsonify }},
     "content": {{ item.content | strip_html | normalize_whitespace | jsonify }},
-    "summary": {{ item.description | default: item.excerpt | strip_html | truncate: 150 | jsonify }},
-    "tags": {{ item.tags | join: " " | default: "" | jsonify }},
+    "summary": {{ item.summary | default: item.description | default: item.excerpt | strip_html | truncate: 150 | jsonify }},
+    "tags": {% if item.collection == "projects" %}{{ item.stack | join: " " | default: "" | jsonify }}{% else %}{{ item.tags | join: " " | default: "" | jsonify }}{% endif %},
     "type": {% if item.collection == "posts" %}"post"{% elsif item.collection == "projects" %}"project"{% else %}"page"{% endif %},
     "collection": {{ item.collection | default: "" | jsonify }}
   }{% unless forloop.last %},{% endunless %}
