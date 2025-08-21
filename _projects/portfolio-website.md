@@ -7,7 +7,6 @@ role: "풀스택 개발자"
 stack: ["Jekyll", "SCSS", "JavaScript", "GitHub Pages"]
 status: "wip"
 featured: true
-thumb: /assets/img/projects/portfolio-thumb.png
 repo: "https://github.com/dbgks25/dbgks25.github.io"
 demo: "https://dbgks25.github.io"
 releases:
