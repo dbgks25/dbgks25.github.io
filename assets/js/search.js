@@ -52,7 +52,7 @@
   }
   
   function setupSearchUI() {
-    const searchInputs = document.querySelectorAll('#search-input, .search-input');
+    const searchInputs = document.querySelectorAll('#search-input, #search-input-main, .search-input');
     
     searchInputs.forEach(input => {
       input.addEventListener('input', debounce(handleSearch, 300));
@@ -89,7 +89,7 @@
   }
   
   function displaySearchResults(results, query) {
-    const listContent = document.getElementById('list-content');
+    const listContent = document.getElementById('search-results');
     if (!listContent) return;
     
     if (results.length === 0) {
@@ -109,23 +109,21 @@
       if (!item) return '';
       
       return `
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">
-              <a href="${item.url}">${highlightText(item.title, query)}</a>
-            </h3>
-            <div class="card-meta">
-              <time datetime="${item.date}">${formatDate(item.date)}</time>
-              <span class="card-type">${item.type === 'post' ? '포스트' : '프로젝트'}</span>
-            </div>
+        <div class="search-result-item">
+          <h3 class="search-result-title">
+            <a href="${item.url}">${highlightText(item.title, query)}</a>
+          </h3>
+          <div class="search-result-meta">
+            <time datetime="${item.date}">${formatDate(item.date || '')}</time>
+            <span class="search-result-type">${item.type === 'post' ? '포스트' : item.type === 'project' ? '프로젝트' : '페이지'}</span>
           </div>
-          <div class="card-content">
+          <div class="search-result-excerpt">
             <p>${highlightText(item.summary || item.content.substring(0, 150), query)}...</p>
           </div>
-          ${item.tags ? `
-            <div class="card-footer">
+          ${item.tags && item.tags.trim() ? `
+            <div class="search-result-tags">
               <ul class="tag-list">
-                ${item.tags.split(' ').slice(0, 3).map(tag => 
+                ${item.tags.split(' ').filter(tag => tag.trim()).slice(0, 3).map(tag => 
                   `<li><a href="/tags/#tag-${tag.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}" class="tag">${tag}</a></li>`
                 ).join('')}
               </ul>
@@ -148,9 +146,17 @@
   }
   
   function clearSearchResults() {
-    const listContent = document.getElementById('list-content');
-    if (listContent && listContent.querySelector('.search-results')) {
-      location.reload(); // Simple way to restore original content
+    const listContent = document.getElementById('search-results');
+    if (listContent) {
+      listContent.innerHTML = `
+        <div class="search-placeholder">
+          <svg width="64" height="64" viewBox="0 0 16 16" fill="currentColor" class="placeholder-icon">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+          <h3>검색어를 입력해주세요</h3>
+          <p>최소 2글자 이상 입력하시면 검색 결과가 표시됩니다.</p>
+        </div>
+      `;
     }
   }
   

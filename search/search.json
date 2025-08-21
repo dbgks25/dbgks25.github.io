@@ -11,11 +11,14 @@ permalink: /search/search.json
 
 {% for item in items %}
   {
+    "id": "{{ forloop.index }}",
     "title": {{ item.title | jsonify }},
     "url": {{ item.url | relative_url | jsonify }},
     "date": {{ item.date | date_to_string | jsonify }},
     "content": {{ item.content | strip_html | normalize_whitespace | jsonify }},
-    "tags": {{ item.tags | default: empty | jsonify }},
+    "summary": {{ item.description | default: item.excerpt | strip_html | truncate: 150 | jsonify }},
+    "tags": {{ item.tags | join: " " | default: "" | jsonify }},
+    "type": {% if item.collection == "posts" %}"post"{% elsif item.collection == "projects" %}"project"{% else %}"page"{% endif %},
     "collection": {{ item.collection | default: "" | jsonify }}
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}
