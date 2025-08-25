@@ -1,4 +1,4 @@
-# dbgks25 · Projects & Blog
+# 깡돌 · Projects & Blog
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://dbgks25.github.io)
 [![Jekyll](https://img.shields.io/badge/Jekyll-4.3+-red)](https://jekyllrb.com/)
