@@ -6,7 +6,7 @@ breadcrumb: false
 ---
 
 <div class="hero-section">
-  <h1>안녕하세요, <strong>dbgks25</strong>입니다</h1>
+  <h1>안녕하세요, <strong>깡돌</strong>입니다</h1>
   <p class="hero-description">
     데이터 분석과 웹 개발에 관심이 많은 대학원생입니다. 
     연구 프로젝트와 개발 경험을 공유하고 있습니다.
