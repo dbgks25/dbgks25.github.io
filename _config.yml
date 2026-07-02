@@ -42,18 +42,23 @@ collections:
 
 # Default front matter
 defaults:
+  # 기본 소셜 공유 이미지(og:image) — 페이지에 image가 없으면 이 값을 사용
+  - scope:
+      path: ""
+    values:
+      image: /assets/img/og-default.png
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "paper"
-      author: "dbgks25"
+      author: "한유한"
   - scope:
       path: ""
       type: "projects"
     values:
       layout: "project"
-      author: "dbgks25"
+      author: "한유한"
 
 # Site navigation
 navigation:
@@ -68,12 +73,12 @@ navigation:
 
 # SEO and social
 author:
-  name: "dbgks25"
+  name: "한유한"
   email: "dbgks25@uos.ac.kr"
   twitter: ""
 
 social:
-  name: "dbgks25"
+  name: "한유한"
   links:
     - "https://github.com/dbgks25"
 
