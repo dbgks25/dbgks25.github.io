@@ -94,3 +94,7 @@ exclude:
   - README.md
   - LICENSE
   - CHANGELOG.md
+  - BLOG_GUIDE.md
+  - SECURITY.md
+  - WORKFLOW.md
+  - run_local.bat
