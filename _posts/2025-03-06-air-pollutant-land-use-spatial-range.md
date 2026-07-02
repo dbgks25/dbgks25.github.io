@@ -1,7 +1,7 @@
 ---
 title: "Impact of land use characteristics on air pollutant concentrations considering the spatial range of influence"
 date: 2025-03-06
-authors: ["Gunwon Lee", "Yuhan Han", "Geunhan Kim"]
+authors: ["이건원", "한유한", "김근한"]
 venue: "Atmospheric Pollution Research, 16(6), 102498 (2025)"
 tags: [대기오염, 토지피복, 다중회귀, XGBoost]
 description: "약 443개 대기질측정소 자료와 식생지수·지형·토지피복 요인을 이용해 6종 대기오염물질 농도에 대한 토지이용의 영향을 공간 영향범위 관점에서 분석한 연구입니다."

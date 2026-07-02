@@ -1,7 +1,7 @@
 ---
 title: "Crime mapping in urban environments using explainable AI: A case study of Daegu, Korea"
 date: 2025-06-04
-authors: ["Geunhan Kim", "Youngtae Cho", "Yuhan Han", "Gunwon Lee"]
+authors: ["김근한", "조영태", "한유한", "이건원"]
 venue: "Sustainable Cities and Society, 130, 106507 (2025)"
 tags: [범죄지도, 설명가능AI, XGBoost, 도시안전, CPTED]
 description: "대구시를 사례로 112 신고 위치 주변 버퍼존의 환경 특성과 범죄 유형의 관계를 XGBoost·SHAP로 분석해 고해상도 범죄위험지도를 작성한 연구입니다."

@@ -1,7 +1,7 @@
 ---
 title: "Characterizing the relationship between the spatial range of influence of urban land characteristics and surface temperature using geospatial explainable artificial intelligence models"
 date: 2025-11-24
-authors: ["Gunwon Lee", "Youngtae Cho", "Yuhan Han", "Geunhan Kim"]
+authors: ["이건원", "조영태", "한유한", "김근한"]
 venue: "International Journal of Digital Earth, 18(2), 2583833 (2025)"
 tags: [지표온도, 도시열섬, 설명가능AI, XGBoost, 원격탐사]
 description: "도시 토지 특성이 지표면 온도에 영향을 미치는 공간적 범위를 지리공간 설명가능 AI(GeoXAI)로 규명하고, 도로 녹지화 시나리오의 냉각 효과를 예측한 연구입니다."
