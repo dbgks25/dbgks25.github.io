@@ -1,56 +1,68 @@
-{% if include.project.thumb %}
+{%- comment -%}
+연구과제 카드. 사용법: include project-card.html 에 project=item 을 넘깁니다.
+{%- endcomment -%}
+{% assign r = include.project %}
+
+{% if r.thumb %}
   <div class="card-thumb">
-    <img src="{{ include.project.thumb | relative_url }}" alt="{{ include.project.title }}" loading="lazy">
+    <img src="{{ r.thumb | relative_url }}" alt="{{ r.title }}" loading="lazy">
   </div>
 {% endif %}
 
 <div class="card-header">
-  <h3 class="card-title">
-    <a href="{{ include.project.url | relative_url }}">{{ include.project.title }}</a>
-  </h3>
-  <div class="card-meta">
-    {% if include.project.date %}
-      <time datetime="{{ include.project.date | date_to_xmlschema }}">
-        {{ include.project.date | date: "%Y년 %m월" }}
-      </time>
-    {% endif %}
-    {% if include.project.status %}
-      <span class="status status-{{ include.project.status }}">
-        {% case include.project.status %}
-          {% when 'released' %}출시됨
+  <div class="card-badges">
+    {% if r.status %}
+      <span class="status status-{{ r.status }}">
+        {% case r.status %}
+          {% when 'released' %}완료
           {% when 'wip' %}진행중
-          {% when 'archived' %}보관됨
-          {% else %}{{ include.project.status }}
+          {% when 'archived' %}종료
+          {% else %}{{ r.status }}
         {% endcase %}
       </span>
     {% endif %}
+    {% if r.period %}
+      <span class="project-period">{{ r.period }}</span>
+    {% elsif r.date %}
+      <time datetime="{{ r.date | date_to_xmlschema }}">{{ r.date | date: "%Y" }}</time>
+    {% endif %}
   </div>
+  <h3 class="card-title">
+    <a href="{{ r.url | relative_url }}">{{ r.title }}</a>
+  </h3>
+  {% if r.agency or r.role %}
+    <p class="card-meta">
+      {% if r.agency %}<span class="project-agency">{{ r.agency }}</span>{% endif %}
+      {% if r.agency and r.role %} · {% endif %}
+      {% if r.role %}<span class="project-role">{{ r.role }}</span>{% endif %}
+    </p>
+  {% endif %}
 </div>
 
 <div class="card-content">
-  {% if include.project.summary %}
-    <p>{{ include.project.summary }}</p>
+  {% if r.summary %}
+    <p>{{ r.summary }}</p>
   {% else %}
-    <p>{{ include.project.excerpt | strip_html | truncate: 150 }}</p>
+    <p>{{ r.excerpt | strip_html | truncate: 150 }}</p>
   {% endif %}
 </div>
 
 <div class="card-footer">
-  {% if include.project.stack and include.project.stack.size > 0 %}
+  {% if r.stack and r.stack.size > 0 %}
     <ul class="badge-list">
-      {% for tech in include.project.stack limit:4 %}
+      {% for tech in r.stack limit:4 %}
         <li class="badge badge-{{ tech | downcase | replace: '.', '' | replace: ' ', '' }}">{{ tech }}</li>
       {% endfor %}
     </ul>
   {% endif %}
-  
+
   <div class="card-actions">
-    {% if include.project.repo %}
-      <a href="{{ include.project.repo }}" class="btn btn-sm" target="_blank" rel="noopener">GitHub</a>
+    {% if r.repo %}
+      <a href="{{ r.repo }}" class="btn btn-sm" target="_blank" rel="noopener">코드</a>
     {% endif %}
-    {% if include.project.demo %}
-      <a href="{{ include.project.demo }}" class="btn btn-sm" target="_blank" rel="noopener">데모</a>
+    {% if r.link %}
+      <a href="{{ r.link }}" class="btn btn-sm" target="_blank" rel="noopener">성과물</a>
     {% endif %}
-    <a href="{{ include.project.url | relative_url }}" class="btn btn-sm btn-primary">자세히</a>
+    <a href="{{ r.url | relative_url }}" class="btn btn-sm btn-primary">자세히</a>
   </div>
 </div>

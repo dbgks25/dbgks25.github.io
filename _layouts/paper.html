@@ -1,0 +1,66 @@
+---
+layout: default
+---
+
+<article class="doc-content paper-detail">
+  <header class="doc-header">
+    <div class="paper-header-top">
+      {% if page.venue %}<span class="paper-venue">{{ page.venue }}</span>{% endif %}
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%Y년 %m월 %d일" }}
+      </time>
+    </div>
+
+    <h1 class="doc-title">{{ page.title }}</h1>
+
+    {% if page.authors %}
+      <p class="paper-byline">
+        <span class="paper-authors">{{ page.authors | join: ", " }}</span>
+      </p>
+    {% endif %}
+
+    {% if page.description %}
+      <p class="doc-description">{{ page.description }}</p>
+    {% endif %}
+
+    {% if page.pdf or page.code or page.link %}
+      <div class="paper-links">
+        {% if page.pdf %}<a href="{{ page.pdf | relative_url }}" class="btn btn-sm" target="_blank" rel="noopener">PDF</a>{% endif %}
+        {% if page.code %}<a href="{{ page.code }}" class="btn btn-sm" target="_blank" rel="noopener">코드</a>{% endif %}
+        {% if page.link %}<a href="{{ page.link }}" class="btn btn-sm" target="_blank" rel="noopener">원문 링크</a>{% endif %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="doc-body">
+    {{ content }}
+  </div>
+
+  {% if page.tags and page.tags.size > 0 %}
+    <footer class="doc-footer">
+      <div class="doc-tags">
+        <span class="tags-label">태그:</span>
+        <ul class="tag-list">
+          {% for tag in page.tags %}
+            <li><a href="{{ '/tags/' | relative_url }}#tag-{{ tag | slugify }}" class="tag">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </footer>
+  {% endif %}
+</article>
+
+<nav class="post-navigation" aria-label="이전/다음 글">
+  {% if page.previous %}
+    <a href="{{ page.previous.url | relative_url }}" class="nav-link nav-prev">
+      ← {{ page.previous.title }}
+    </a>
+  {% endif %}
+  {% if page.next %}
+    <a href="{{ page.next.url | relative_url }}" class="nav-link nav-next">
+      {{ page.next.title }} →
+    </a>
+  {% endif %}
+</nav>
+
+{% include comments.html %}

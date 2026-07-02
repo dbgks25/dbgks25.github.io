@@ -1,8 +1,8 @@
 # Site settings
-title: "HYH · Projects & Blog"
+title: "깡돌 · 논문 & 과제 아카이브"
 email: dbgks25@uos.ac.kr
 description: >-
-  개인 포트폴리오 및 기술 블로그. 데이터 분석, 웹 개발, 연구 프로젝트를 다룹니다.
+  직접 작성한 논문과 과제, 연구 프로젝트를 정리하는 개인 아카이브입니다.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://dbgks25.github.io" # the base hostname & protocol for your site
 twitter_username: dbgks25
@@ -11,7 +11,8 @@ github_username: dbgks25
 # Build settings
 markdown: kramdown
 highlighter: rouge
-permalink: /:categories/:year/:month/:day/:title/
+# 논문·과제 글은 깔끔한 URL(/paper/제목/)을 사용합니다.
+permalink: /paper/:title/
 
 # Kramdown settings
 kramdown:
@@ -45,7 +46,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post"
+      layout: "paper"
       author: "dbgks25"
   - scope:
       path: ""
@@ -58,8 +59,8 @@ defaults:
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Blog"
-    url: "/blog/"
+  - title: "Paper"
+    url: "/paper/"
   - title: "Projects"
     url: "/projects/"
   - title: "About"

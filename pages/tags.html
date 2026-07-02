@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "태그"
-description: "블로그 포스트를 태그별로 분류해서 볼 수 있습니다."
+description: "논문을 태그별로 분류해서 볼 수 있습니다."
 permalink: /tags/
 ---
 
 <div class="tags-page">
-  <h1>태그별 포스트</h1>
-  <p class="tags-description">관심 있는 태그를 클릭하여 관련 포스트를 확인해보세요.</p>
+  <h1>태그별 논문</h1>
+  <p class="tags-description">관심 있는 태그를 클릭하여 관련 논문을 확인해보세요.</p>
   
   <div class="tags-cloud">
     {% assign sorted_tags = site.tags | sort %}
@@ -23,7 +23,7 @@ permalink: /tags/
       <section class="tag-section" id="tag-{{ tag[0] | slugify }}">
         <h2 class="tag-title">
           <span class="tag-name">{{ tag[0] }}</span>
-          <span class="tag-count">{{ tag[1].size }}개 포스트</span>
+          <span class="tag-count">{{ tag[1].size }}개 항목</span>
         </h2>
         
         <div class="posts-grid">

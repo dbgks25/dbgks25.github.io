@@ -10,55 +10,19 @@ layout: default
 </div>
 
 <div class="list-content" id="list-content">
-  {% if page.collection == 'posts' %}
-    {% assign items = site.posts %}
-  {% elsif page.collection == 'projects' %}
-    {% assign items = site.projects %}
-  {% else %}
-    {% assign items = site.posts %}
-  {% endif %}
-  
+  {% assign items = site.projects | sort: "date" | reverse %}
+
   {% if items.size > 0 %}
     <div class="card-grid">
       {% for item in items %}
         <div class="card">
-          {% if page.collection == 'projects' %}
-            {% include project-card.html project=item %}
-          {% else %}
-            {% include post-card.html post=item %}
-          {% endif %}
+          {% include project-card.html project=item %}
         </div>
       {% endfor %}
     </div>
   {% else %}
     <div class="empty-state">
-      <p>아직 {% if page.collection == 'projects' %}프로젝트가{% else %}포스트가{% endif %} 없습니다.</p>
+      <p>아직 등록된 프로젝트가 없습니다.</p>
     </div>
   {% endif %}
 </div>
-
-{% if paginator and paginator.total_pages > 1 %}
-  <nav class="pagination" aria-label="페이지네이션">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}" class="page-link" aria-label="이전 페이지">‹</a>
-    {% else %}
-      <span class="page-link disabled" aria-label="이전 페이지">‹</span>
-    {% endif %}
-    
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-        <span class="page-link active" aria-current="page">{{ page }}</span>
-      {% elsif page == 1 %}
-        <a href="{{ '/' | relative_url }}" class="page-link">{{ page }}</a>
-      {% else %}
-        <a href="{{ site.paginate_path | replace: ':num', page | relative_url }}" class="page-link">{{ page }}</a>
-      {% endif %}
-    {% endfor %}
-    
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}" class="page-link" aria-label="다음 페이지">›</a>
-    {% else %}
-      <span class="page-link disabled" aria-label="다음 페이지">›</span>
-    {% endif %}
-  </nav>
-{% endif %}

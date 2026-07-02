@@ -442,3 +442,378 @@
     opacity: 1;
   }
 }
+
+// ---------------------------------------------------------------------------
+// List / grid layout helpers
+// ---------------------------------------------------------------------------
+.list-header {
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0 0 $spacing-sm;
+  }
+
+  .list-description {
+    color: var(--color-text-secondary);
+    font-size: $font-size-lg;
+    margin: 0;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  flex-wrap: wrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: $spacing-3xl $spacing-lg;
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border);
+  border-radius: $radius-lg;
+}
+
+.empty-hint {
+  color: var(--color-text-muted);
+  font-size: $font-size-sm;
+}
+
+// ---------------------------------------------------------------------------
+// Paper (논문) specific
+// ---------------------------------------------------------------------------
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+
+  time {
+    font-size: $font-size-xs;
+    color: var(--color-text-muted);
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.paper-authors {
+  color: var(--color-text-secondary);
+}
+
+.paper-venue {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+// Home: recent paper items
+.post-item-head {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xs;
+
+  h3 { margin: 0; }
+}
+
+.post-item-venue {
+  display: block;
+  font-size: $font-size-xs;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+// ---------------------------------------------------------------------------
+// Document / paper detail pages
+// ---------------------------------------------------------------------------
+.doc-content {
+  max-width: $content-max-width;
+  margin: 0 auto;
+}
+
+.doc-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid var(--color-border);
+
+  .doc-title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    color: var(--color-text-primary);
+    margin: $spacing-sm 0;
+  }
+
+  .doc-description {
+    color: var(--color-text-secondary);
+    font-size: $font-size-lg;
+    margin: $spacing-sm 0 0;
+  }
+
+  .doc-meta {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    margin-top: $spacing-sm;
+  }
+}
+
+.paper-header-top {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  color: var(--color-text-muted);
+  font-size: $font-size-sm;
+}
+
+.paper-byline {
+  margin: $spacing-sm 0 0;
+  color: var(--color-text-secondary);
+  font-size: $font-size-base;
+}
+
+.paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-top: $spacing-md;
+}
+
+.doc-body,
+.project-body {
+  color: var(--color-text-primary);
+  line-height: $line-height-relaxed;
+
+  h2 {
+    font-size: $font-size-2xl;
+    margin: $spacing-xl 0 $spacing-md;
+  }
+
+  h3 {
+    font-size: $font-size-xl;
+    margin: $spacing-lg 0 $spacing-sm;
+  }
+
+  p, ul, ol, table, pre, blockquote {
+    margin-bottom: $spacing-md;
+  }
+
+  blockquote {
+    margin: $spacing-lg 0;
+    padding: $spacing-sm $spacing-lg;
+    border-left: 4px solid var(--color-primary);
+    background-color: var(--color-surface);
+    color: var(--color-text-secondary);
+    border-radius: 0 $radius-md $radius-md 0;
+
+    p:last-child { margin-bottom: 0; }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid var(--color-border);
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--color-surface);
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $radius-md;
+  }
+}
+
+.doc-footer {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid var(--color-border);
+
+  .tags-label {
+    font-size: $font-size-sm;
+    color: var(--color-text-muted);
+    margin-right: $spacing-sm;
+  }
+
+  .doc-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+}
+
+// Prev / next navigation between papers
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-top: $spacing-2xl;
+  flex-wrap: wrap;
+
+  .nav-link {
+    flex: 1;
+    min-width: 200px;
+    padding: $spacing-md;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-md;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    &.nav-next {
+      text-align: right;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Research project (연구과제)
+// ---------------------------------------------------------------------------
+.card-thumb {
+  margin: -#{$spacing-lg} -#{$spacing-lg} $spacing-md;
+  overflow: hidden;
+  border-radius: $radius-lg $radius-lg 0 0;
+
+  img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.project-period,
+.project-agency {
+  font-size: $font-size-xs;
+  color: var(--color-text-muted);
+}
+
+.project-role {
+  color: var(--color-text-secondary);
+}
+
+// Detail page
+.project-content {
+  max-width: $content-max-width;
+  margin: 0 auto;
+}
+
+.project-header {
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid var(--color-border);
+
+  .project-thumb {
+    margin-bottom: $spacing-lg;
+
+    img {
+      width: 100%;
+      border-radius: $radius-lg;
+    }
+  }
+
+  .project-title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin: 0 0 $spacing-sm;
+  }
+
+  .project-summary {
+    font-size: $font-size-lg;
+    color: var(--color-text-secondary);
+    margin: 0 0 $spacing-lg;
+  }
+}
+
+.project-meta {
+  display: grid;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  .meta-item {
+    font-size: $font-size-sm;
+    color: var(--color-text-secondary);
+
+    strong {
+      color: var(--color-text-primary);
+      margin-right: $spacing-xs;
+    }
+  }
+}
+
+.project-stack {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+
+  strong {
+    font-size: $font-size-sm;
+    color: var(--color-text-primary);
+  }
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  .btn svg {
+    margin-right: $spacing-xs;
+  }
+}
+
+.project-releases {
+  margin-top: $spacing-2xl;
+
+  h2 {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-lg;
+  }
+
+  .release-item {
+    padding: $spacing-md 0 $spacing-md $spacing-lg;
+    border-left: 2px solid var(--color-border);
+    margin-bottom: $spacing-md;
+
+    h3 {
+      margin: 0;
+      font-size: $font-size-lg;
+      color: var(--color-primary);
+    }
+
+    time {
+      font-size: $font-size-xs;
+      color: var(--color-text-muted);
+    }
+
+    .release-notes {
+      margin-top: $spacing-sm;
+      color: var(--color-text-secondary);
+    }
+  }
+}

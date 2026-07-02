@@ -1,32 +1,32 @@
 ---
 layout: project
-title: "탄소 분석 시각화 프로젝트"
+title: "지역별 탄소 배출·흡수 분석 및 시각화"
 date: 2024-12-15
-summary: "한국 17개 지역의 탄소 배출/흡수 데이터를 분석하고 시각화하는 연구 프로젝트"
-role: "데이터 분석가 & 개발자"
+period: "2024.03 – 2024.12"
+agency: "한국환경산업기술원 (예시)"
+role: "데이터 분석 담당 (참여연구원)"
+summary: "한국 17개 시도의 탄소 배출/흡수 데이터를 분석하고 논문 수준으로 시각화한 연구과제"
 stack: ["Python", "Matplotlib", "Pandas", "NumPy", "Seaborn"]
 status: "released"
 featured: true
 repo: "https://github.com/dbgks25/carbon-analysis"
-demo: "https://dbgks25.github.io/carbon-viz-demo"
+# link: "https://example.org/report"   # 성과물(보고서/논문) 링크
+tags: [탄소, 시각화, 환경분석, Python]
 releases:
-  - version: "v2.0"
+  - version: "3차년도"
     date: 2024-12-15
     notes: |
       - 고해상도 출력 지원 (600 DPI)
       - 다크 모드 호환 색상 팔레트
       - 통계 분석 기능 강화
-      - 메타데이터 자동 생성
-  - version: "v1.5"
+  - version: "2차년도"
     date: 2024-11-20
     notes: |
       - 4패널 트렌드 분석 레이아웃 추가
       - 상관관계 히트맵 구현
-      - 퍼센타일 클리핑으로 이상치 처리 개선
-  - version: "v1.0"
+  - version: "1차년도"
     date: 2024-10-10
     notes: |
-      - 초기 버전 출시
       - 기본 히트맵 시각화
       - 17개 지역 데이터 처리
 ---
@@ -78,8 +78,6 @@ def create_custom_colormap():
 ## 주요 분석 결과
 
 ### 지역별 탄소 수지 패턴
-
-![지역별 탄소 트렌드]({{ '/assets/img/projects/carbon-regional-trends.png' | relative_url }})
 
 - **탄소 흡수 우수 지역**: 강원도, 경상북도 (산림 비율 높음)
 - **탄소 배출 집중 지역**: 서울, 부산 (도시화 진행)

@@ -18,18 +18,20 @@
       </ul>
     </div>
     
-    <div class="nav-section">
-      <h2 class="nav-title">최근 포스트</h2>
-      <ul class="nav-list">
-        {% for post in site.posts limit:5 %}
-          <li class="nav-item">
-            <a href="{{ post.url | relative_url }}" class="nav-link {% if page.url == post.url %}active{% endif %}">
-              {{ post.title | truncate: 30 }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+    {% if site.posts.size > 0 %}
+      <div class="nav-section">
+        <h2 class="nav-title">최근 논문</h2>
+        <ul class="nav-list">
+          {% for post in site.posts limit:5 %}
+            <li class="nav-item">
+              <a href="{{ post.url | relative_url }}" class="nav-link {% if page.url == post.url %}active{% endif %}">
+                {{ post.title | truncate: 30 }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
     
     {% assign featured_projects = site.projects | where: "featured", true %}
     {% if featured_projects.size > 0 %}
@@ -53,7 +55,7 @@
         {% assign sorted_tags = site.tags | sort %}
         {% for tag in sorted_tags limit:8 %}
           <li class="nav-item">
-            <a href="/tags/#tag-{{ tag[0] | slugify }}" class="nav-link">
+            <a href="{{ '/tags/' | relative_url }}#tag-{{ tag[0] | slugify }}" class="nav-link">
               {{ tag[0] }} ({{ tag[1].size }})
             </a>
           </li>
@@ -63,9 +65,6 @@
   </nav>
   
   <div class="sidebar-footer">
-    <div class="visitor-counter">
-      <img src="https://visitor-badge.glitch.me/badge?page_id=dbgks25.github.io" alt="visitors"/>
-    </div>
     <button class="theme-toggle" id="theme-toggle" aria-label="테마 변경">
       <svg class="theme-icon theme-icon-light" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
         <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z"/>

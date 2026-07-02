@@ -1,0 +1,47 @@
+{%- comment -%}
+논문 카드. 사용법: include paper-card.html 에 post=post 를 넘깁니다.
+{%- endcomment -%}
+{% assign p = include.post %}
+
+<div class="card-header">
+  <div class="card-badges">
+    <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%Y" }}</time>
+    {% if p.venue %}<span class="paper-venue">{{ p.venue }}</span>{% endif %}
+  </div>
+  <h3 class="card-title">
+    <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+  </h3>
+  {% if p.authors %}
+    <p class="card-meta">
+      <span class="paper-authors">{{ p.authors | join: ", " }}</span>
+    </p>
+  {% endif %}
+</div>
+
+<div class="card-content">
+  {% if p.description %}
+    <p>{{ p.description }}</p>
+  {% else %}
+    <p>{{ p.excerpt | strip_html | truncate: 150 }}</p>
+  {% endif %}
+</div>
+
+<div class="card-footer">
+  {% if p.tags and p.tags.size > 0 %}
+    <ul class="tag-list">
+      {% for tag in p.tags limit:3 %}
+        <li><a href="{{ '/tags/' | relative_url }}#tag-{{ tag | slugify }}" class="tag">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <div class="card-actions">
+    {% if p.pdf %}
+      <a href="{{ p.pdf | relative_url }}" class="btn btn-sm" target="_blank" rel="noopener">PDF</a>
+    {% endif %}
+    {% if p.code %}
+      <a href="{{ p.code }}" class="btn btn-sm" target="_blank" rel="noopener">코드</a>
+    {% endif %}
+    <a href="{{ p.url | relative_url }}" class="btn btn-sm btn-primary">자세히</a>
+  </div>
+</div>
