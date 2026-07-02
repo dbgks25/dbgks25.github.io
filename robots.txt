@@ -1,20 +1,15 @@
+---
+# front matter가 있어야 Jekyll이 아래 Liquid({{ site.url }})를 렌더링합니다.
+permalink: /robots.txt
+sitemap: false
+---
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: {{ site.url }}/sitemap.xml
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
 
-# Disallow admin and private directories
-Disallow: /admin/
+# Disallow build/system directories
 Disallow: /.git/
 Disallow: /_site/
 Disallow: /node_modules/
-
-# Allow search engines to crawl important content
-Allow: /blog/
-Allow: /projects/
-Allow: /about/
-Allow: /assets/
-
-# Crawl delay (optional)
-Crawl-delay: 1
