@@ -22,17 +22,21 @@
   try { cached = localStorage.getItem(CACHE); } catch (e) {}
   if (cached != null) show(cached);
 
-  // Already counted in this browser session → a refresh: do not increment.
+  // Already counted in this browser session → a refresh or navigating to
+  // another page in the same visit: do not increment.
   var counted = false;
   try { counted = !!sessionStorage.getItem(SESS); } catch (e) {}
   if (counted) return;
+
+  // Mark as counted SYNCHRONOUSLY, before the async call — otherwise clicking
+  // through to another page before the request resolves would count again.
+  try { sessionStorage.setItem(SESS, '1'); } catch (e) {}
 
   // New session → increment once and cache the authoritative count.
   fetch('https://api.counterapi.dev/v1/' + NS + '/' + KEY + '/up')
     .then(function (r) { return r.json(); })
     .then(function (d) {
       if (d && typeof d.count === 'number') {
-        try { sessionStorage.setItem(SESS, '1'); } catch (e) {}
         try { localStorage.setItem(CACHE, String(d.count)); } catch (e) {}
         show(d.count);
       }
