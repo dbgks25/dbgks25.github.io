@@ -107,8 +107,24 @@
     margin-top: auto;
     
     .visitor-counter {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing-xs;
       margin-bottom: $spacing-md;
+      font-size: $font-size-xs;
+
+      &[hidden] { display: none; }
+
+      .vc-label {
+        color: var(--color-text-muted);
+      }
+
+      .vc-count {
+        font-weight: $font-weight-semibold;
+        color: var(--color-primary);
+        font-variant-numeric: tabular-nums;
+      }
     }
 
     .theme-toggle {
